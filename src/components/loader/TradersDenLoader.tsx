@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './TradersDenLoader.scss';
 
 interface TradersDenLoaderProps {
@@ -10,67 +10,15 @@ export const TradersDenLoader: React.FC<TradersDenLoaderProps> = ({ onLoadComple
     const [progress, setProgress] = useState(0);
     const [statusIndex, setStatusIndex] = useState(0);
     const [isComplete, setIsComplete] = useState(false);
-    const canvasRef = useRef<HTMLCanvasElement>(null);
 
     const statuses = [
-        'Establishing Connection...',
-        'Loading Market Data...',
-        'Initializing Trading Platform...',
+        'Initializing Quantum Core...',
+        'Synchronizing Market Algorithms...',
+        'Calibrating Trading Mechanisms...',
         'Access Granted. Welcome to MOZAIC TRADING HUB.',
     ];
 
-    // Digital Rain Effect - Optimized for performance
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
 
-        const ctx = canvas.getContext('2d', { alpha: true });
-        if (!ctx) return;
-
-        const fontSize = 14;
-        const characters = '01';
-        let columns: number;
-        let drops: number[];
-        let animationId: number;
-
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            columns = Math.floor(canvas.width / fontSize);
-            drops = [];
-            for (let i = 0; i < columns; i++) {
-                drops[i] = Math.floor(Math.random() * -100);
-            }
-        };
-
-        const drawDigitalRain = () => {
-            ctx.fillStyle = 'rgba(10, 10, 10, 0.08)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#06D6A0';
-            ctx.font = `${fontSize}px monospace`;
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = characters.charAt(Math.floor(Math.random() * characters.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-
-            animationId = requestAnimationFrame(drawDigitalRain);
-        };
-
-        resizeCanvas();
-        animationId = requestAnimationFrame(drawDigitalRain);
-        window.addEventListener('resize', resizeCanvas);
-
-        return () => {
-            cancelAnimationFrame(animationId);
-            window.removeEventListener('resize', resizeCanvas);
-        };
-    }, []);
 
     // Progress and Status Updates - Optimized for faster loading
     useEffect(() => {
@@ -112,31 +60,105 @@ export const TradersDenLoader: React.FC<TradersDenLoaderProps> = ({ onLoadComple
 
     return (
         <div className={`traders-den-loader ${isComplete ? 'fade-out' : ''}`}>
-            <canvas ref={canvasRef} className='digital-rain-canvas' />
+            {/* Particle Background */}
+            <div className='particle-background'>
+                {[...Array(30)].map((_, i) => (
+                    <div key={i} className='particle' style={{
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 100}%`,
+                        animationDelay: `${Math.random() * 3}s`,
+                        animationDuration: `${3 + Math.random() * 4}s`
+                    }}></div>
+                ))}
+            </div>
 
             <div className='loading-container'>
+                {/* Mechanical Hebrew Sun Loader */}
+                <div className='mechanical-sun-container'>
+                    {/* Outer rotating ring with notches */}
+                    <div className='outer-ring'>
+                        {[...Array(12)].map((_, i) => (
+                            <div key={i} className='ring-notch' style={{
+                                transform: `rotate(${i * 30}deg) translateY(-140px)`
+                            }}></div>
+                        ))}
+                    </div>
+
+                    {/* Middle gear ring */}
+                    <div className='middle-gear'>
+                        {[...Array(8)].map((_, i) => (
+                            <div key={i} className='gear-tooth' style={{
+                                transform: `rotate(${i * 45}deg) translateY(-110px)`
+                            }}></div>
+                        ))}
+                    </div>
+
+                    {/* Star of David - Two overlapping triangles */}
+                    <div className='star-of-david'>
+                        {/* Upward triangle */}
+                        <div className='triangle triangle-up'>
+                            <div className='triangle-side side-1'></div>
+                            <div className='triangle-side side-2'></div>
+                            <div className='triangle-side side-3'></div>
+                        </div>
+                        
+                        {/* Downward triangle */}
+                        <div className='triangle triangle-down'>
+                            <div className='triangle-side side-1'></div>
+                            <div className='triangle-side side-2'></div>
+                            <div className='triangle-side side-3'></div>
+                        </div>
+
+                        {/* Center hexagon with gears */}
+                        <div className='center-hexagon'>
+                            <div className='hexagon-inner'>
+                                {[...Array(6)].map((_, i) => (
+                                    <div key={i} className='hex-gear' style={{
+                                        transform: `rotate(${i * 60}deg) translateY(-25px)`
+                                    }}></div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Inner rotating core */}
+                    <div className='inner-core'>
+                        <div className='core-ring'></div>
+                        <div className='core-center'>
+                            <div className='progress-circle' style={{
+                                background: `conic-gradient(#2563eb ${progress * 3.6}deg, transparent ${progress * 3.6}deg)`
+                            }}></div>
+                        </div>
+                    </div>
+
+                    {/* Orbiting elements */}
+                    <div className='orbit-container'>
+                        {[...Array(3)].map((_, i) => (
+                            <div key={i} className='orbit-element' style={{
+                                animationDelay: `${i * 0.8}s`
+                            }}></div>
+                        ))}
+                    </div>
+                </div>
+
                 {/* App Logo/Name */}
                 <div className='logo-section'>
                     <h1 className='logo-title'>
-                        <span className='logo-traders'>TRADERS</span>
-                        <span className='logo-den'>DEN</span>
+                        <span className='logo-mozaic'>MOZAIC</span>
+                        <span className='logo-trading'>TRADING</span>
+                        <span className='logo-hub'>HUB</span>
                     </h1>
-                    <p className='logo-subtitle'>Decoding Market Algorithms...</p>
-                </div>
-
-                {/* Custom Data Pulse Loader */}
-                <div className='data-pulse-container'>
-                    <div className='data-bar bar-1'></div>
-                    <div className='data-bar bar-2'></div>
-                    <div className='data-bar bar-3'></div>
+                    <p className='logo-subtitle'>Quantum Trading Mechanics</p>
                 </div>
 
                 {/* Progress Bar and Status */}
                 <div className='progress-section'>
                     <div className='progress-bar-container'>
                         <div className='progress-bar-fill' style={{ width: `${progress}%` }}></div>
+                        <div className='progress-glow' style={{ left: `${progress}%` }}></div>
                     </div>
                     <p className='loading-status'>{statuses[statusIndex]}</p>
+                    <div className='progress-percentage'>{Math.floor(progress)}%</div>
                 </div>
             </div>
         </div>
