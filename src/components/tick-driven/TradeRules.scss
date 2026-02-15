@@ -203,7 +203,7 @@
     }
 
     &__delete {
-        background: var(--accent-maroon, #991b1b);
+        background: var(--accent-navy, #1e3a8a);
         color: #fff;
         border: none;
         padding: 4px 8px;
@@ -212,7 +212,7 @@
         font-size: 11px;
 
         &:hover {
-            background: var(--accent-maroon-light, #dc2626);
+            background: var(--accent-navy-light, #2563eb);
         }
     }
 
@@ -235,8 +235,8 @@
     --tertiary-bg: #2d3748;
     --accent-teal: #14b8a6;
     --accent-teal-light: #5eead4;
-    --accent-maroon: #991b1b;
-    --accent-maroon-light: #dc2626;
+    --accent-navy: #1e3a8a;
+    --accent-navy-light: #2563eb;
     --text-primary: #fff;
     --text-secondary: #cbd5e1;
     --border-color: rgb(20 184 166 / 30%);
@@ -249,8 +249,8 @@
     --tertiary-bg: #f1f5f9;
     --accent-teal: #0891b2;
     --accent-teal-light: #0e7490;
-    --accent-maroon: #dc2626;
-    --accent-maroon-light: #ef4444;
+    --accent-navy: #1e40af;
+    --accent-navy-light: #3b82f6;
     --text-primary: #1e293b;
     --text-secondary: #64748b;
     --border-color: rgb(8 145 178 / 20%);

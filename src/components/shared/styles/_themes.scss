@@ -38,7 +38,7 @@
     // Brand primary colors
     --brand-white: #{constants.$color-white};
     --brand-dark-grey: #{constants.$color-black};
-    --brand-red-coral: #{constants.$color-red};
+    --brand-red-coral: #1e3a8a; // Navy blue
     --brand-orange: #{constants.$color-orange};
 
     // Brand secondary colors
@@ -99,14 +99,14 @@
         --purchase-disabled-section: #{constants.$color-grey-4};
 
         // Buttons
-        --button-primary-default: var(--brand-red-coral);
+        --button-primary-default: #1e3a8a; // Navy blue
         --button-secondary-default: #{constants.$color-grey-1};
         --button-tertiary-default: transparent;
-        --button-primary-light-default: #{constants.$alpha-color-red-2};
-        --button-primary-hover: #{constants.$color-red-5};
+        --button-primary-light-default: rgba(30, 58, 138, 0.2); // Navy blue with alpha
+        --button-primary-hover: #1e40af; // Lighter navy blue
         --button-secondary-hover: #{constants.$alpha-color-black-3};
-        --button-tertiary-hover: #{constants.$alpha-color-red-1};
-        --button-primary-light-hover: #{constants.$alpha-color-red-3};
+        --button-tertiary-hover: rgba(30, 58, 138, 0.1); // Navy blue with alpha
+        --button-primary-light-hover: rgba(30, 58, 138, 0.3); // Navy blue with alpha
         --button-toggle-primary: #{constants.$color-blue-3};
         --button-toggle-secondary: #{constants.$color-grey-5};
         --button-toggle-alternate: #{constants.$color-white};
@@ -205,7 +205,7 @@
         --general-main-3: #{constants.$color-black-4};
         --general-main-4: #{constants.$alpha-color-black-7};
         --general-section-1: #{constants.$color-black-3};
-        --general-section-2: #800000; // Maroon color
+        --general-section-2: #1e3a8a; // Navy blue color
         --general-section-3: #{constants.$color-black-5};
         --general-section-4: #{constants.$color-black-5};
         --general-section-5: #{constants.$color-black-5};
@@ -243,14 +243,14 @@
         --purchase-disabled-section: #{constants.$color-black};
 
         // Buttons
-        --button-primary-default: var(--brand-red-coral);
+        --button-primary-default: #1e3a8a; // Navy blue
         --button-secondary-default: #{constants.$color-grey-7};
         --button-tertiary-default: transparent;
-        --button-primary-light-default: #{constants.$alpha-color-red-2};
-        --button-primary-hover: #{constants.$color-red-5};
+        --button-primary-light-default: rgba(30, 58, 138, 0.2); // Navy blue with alpha
+        --button-primary-hover: #1e40af; // Lighter navy blue
         --button-secondary-hover: #{constants.$alpha-color-white-3};
-        --button-tertiary-hover: #{constants.$alpha-color-red-1};
-        --button-primary-light-hover: #{constants.$alpha-color-red-3};
+        --button-tertiary-hover: rgba(30, 58, 138, 0.1); // Navy blue with alpha
+        --button-primary-light-hover: rgba(30, 58, 138, 0.3); // Navy blue with alpha
         --button-toggle-primary: #{constants.$color-blue-3};
         --button-toggle-secondary: #{constants.$color-black-8};
         --button-toggle-alternate: #{constants.$color-black-8};

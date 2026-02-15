@@ -8,7 +8,7 @@ export const AppLogo = () => {
     if (!isDesktop) return null;
     return (
         <a
-            href='https://www.tradersden.site/'
+            href='https://www.mozaictradinghub.site/'
             target='_blank'
             rel='noopener noreferrer'
             className='app-header__logo traders-den-logo'

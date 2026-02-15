@@ -16,7 +16,7 @@ export const TradersDenLoader: React.FC<TradersDenLoaderProps> = ({ onLoadComple
         'Establishing Connection...',
         'Loading Market Data...',
         'Initializing Trading Platform...',
-        'Access Granted. Welcome to TradersDen.',
+        'Access Granted. Welcome to MOZAIC TRADING HUB.',
     ];
 
     // Digital Rain Effect - Optimized for performance

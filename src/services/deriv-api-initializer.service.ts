@@ -25,7 +25,7 @@ class DerivAPIInitializer {
     private connectionListeners: Set<(connected: boolean) => void> = new Set();
 
     private readonly config: DerivAPIConfig = {
-        appId: 82255,
+        appId: 115423,
         endpoint: 'wss://ws.derivws.com/websockets/v3',
         language: 'en',
         brand: 'deriv',
