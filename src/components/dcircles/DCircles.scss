@@ -1,17 +1,12 @@
 .dcircles-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90vw;
+    width: 100%;
     max-width: 1400px;
-    height: 85vh;
+    margin: 0 auto;
+    min-height: calc(100vh - 120px);
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     padding: 2rem;
     overflow-y: auto;
     color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .dcircles-header {
