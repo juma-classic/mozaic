@@ -28,7 +28,7 @@ export const DCircles: React.FC = () => {
             wsRef.current.close();
         }
 
-        const ws = new WebSocket('wss://ws.derivws.com/websockets/v3?app_id=1089');
+        const ws = new WebSocket('wss://ws.derivws.com/websockets/v3?app_id=115423');
         wsRef.current = ws;
 
         ws.onopen = () => {
