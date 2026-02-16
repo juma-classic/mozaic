@@ -1896,6 +1896,18 @@ const AppWrapper = observer(() => {
                             }
                             id='id-bot-builder'
                         />
+                        {/* DIGIT ANALYSIS TAB */}
+                        <div
+                            label={
+                                <>
+                                    <DigitAnalysisIcon />
+                                    <Localize i18n_default_text='Digit Analysis' />
+                                </>
+                            }
+                            id='id-digit-analysis'
+                        >
+                            <DigitAnalysis />
+                        </div>
                         {/* CHARTS TAB */}
                         <div
                             label={
@@ -2769,19 +2781,6 @@ const AppWrapper = observer(() => {
                             id='id-track-calculator'
                         >
                             <TradingCalculator />
-                        </div>
-
-                        {/* DIGIT ANALYSIS TAB */}
-                        <div
-                            label={
-                                <>
-                                    <DigitAnalysisIcon />
-                                    <Localize i18n_default_text='Digit Analysis' />
-                                </>
-                            }
-                            id='id-digit-analysis'
-                        >
-                            <DigitAnalysis />
                         </div>
 
                         {/* RICH MOTHER TAB */}

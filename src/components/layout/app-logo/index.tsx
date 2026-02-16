@@ -13,7 +13,7 @@ export const AppLogo = () => {
             rel='noopener noreferrer'
             className='app-header__logo traders-den-logo'
         >
-            <span className='traders-den-text'>TRADERS DEN</span>
+            <span className='traders-den-text'>MOZAIC</span>
         </a>
     );
 };
