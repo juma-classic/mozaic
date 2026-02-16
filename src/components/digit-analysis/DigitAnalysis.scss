@@ -1,0 +1,526 @@
+.digit-analysis {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #fff;
+    overflow-y: auto;
+
+    &__main {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    &__price-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: rgba(30, 58, 138, 0.1);
+        border-radius: 16px;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+
+        .price-content {
+            flex: 1;
+            text-align: center;
+
+            .current-price {
+                font-size: 3rem;
+                font-weight: 700;
+                color: #3b82f6;
+                text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+                margin-bottom: 0.5rem;
+            }
+
+            .price-label {
+                font-size: 0.9rem;
+                color: #94a3b8;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+        }
+
+        .market-selector {
+            flex: 1;
+            text-align: center;
+
+            .symbol-select {
+                width: 100%;
+                padding: 1rem;
+                background: rgba(15, 23, 42, 0.8);
+                border: 2px solid rgba(59, 130, 246, 0.3);
+                border-radius: 12px;
+                color: #fff;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    border-color: rgba(59, 130, 246, 0.6);
+                }
+
+                &:focus {
+                    outline: none;
+                    border-color: #3b82f6;
+                    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+                }
+
+                optgroup {
+                    background: #1e293b;
+                    color: #94a3b8;
+                    font-weight: 600;
+                }
+
+                option {
+                    background: #0f172a;
+                    color: #fff;
+                    padding: 0.5rem;
+                }
+            }
+
+            .selector-label {
+                margin-top: 0.5rem;
+                font-size: 0.9rem;
+                color: #94a3b8;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+        }
+    }
+
+    &__section {
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: rgba(15, 23, 42, 0.5);
+        border-radius: 16px;
+        border: 1px solid rgba(59, 130, 246, 0.1);
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+    }
+
+    // Digit Distribution Grid
+    .digit-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .digit-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        position: relative;
+
+        .current-indicator {
+            position: absolute;
+            top: -25px;
+            font-size: 1.5rem;
+            color: #3b82f6;
+            animation: bounce 1s infinite;
+        }
+
+        .digit-circle-wrapper {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .digit-circle {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .progress-ring {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                transform: rotate(-90deg);
+            }
+
+            .digit-number {
+                font-size: 2rem;
+                font-weight: 700;
+                color: #cbd5e1;
+                z-index: 1;
+
+                &.current {
+                    color: #3b82f6;
+                    text-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+                }
+
+                &.highest {
+                    color: #10b981;
+                }
+
+                &.lowest {
+                    color: #ef4444;
+                }
+            }
+        }
+
+        .digit-percentage {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #94a3b8;
+
+            &.highest {
+                color: #10b981;
+            }
+
+            &.lowest {
+                color: #ef4444;
+            }
+        }
+    }
+
+    .analysis-stats {
+        text-align: center;
+        font-size: 1rem;
+        color: #cbd5e1;
+
+        .stat-highest {
+            color: #10b981;
+            font-weight: 700;
+        }
+
+        .stat-lowest {
+            color: #ef4444;
+            font-weight: 700;
+        }
+    }
+
+    // Digit Selector
+    .digit-selector {
+        margin-bottom: 2rem;
+
+        .selector-label {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #94a3b8;
+        }
+
+        .digit-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+
+            .digit-btn {
+                width: 50px;
+                height: 50px;
+                border-radius: 12px;
+                border: 2px solid rgba(59, 130, 246, 0.3);
+                background: rgba(15, 23, 42, 0.8);
+                color: #cbd5e1;
+                font-size: 1.2rem;
+                font-weight: 700;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    border-color: #3b82f6;
+                    background: rgba(59, 130, 246, 0.2);
+                    transform: translateY(-2px);
+                }
+
+                &.selected {
+                    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+                    border-color: #3b82f6;
+                    color: #fff;
+                    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+                }
+            }
+        }
+    }
+
+    // Comparison Grid
+    .comparison-analysis {
+        margin-top: 2rem;
+    }
+
+    .comparison-grid,
+    .eo-grid,
+    .rf-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .stat-card {
+        padding: 2rem;
+        border-radius: 12px;
+        text-align: center;
+        border: 2px solid;
+        transition: all 0.3s ease;
+
+        &:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.9;
+        }
+
+        &.over {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+            color: #60a5fa;
+        }
+
+        &.under {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: #8b5cf6;
+            color: #a78bfa;
+        }
+
+        &.equal {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: #10b981;
+            color: #34d399;
+        }
+
+        &.even {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+            color: #60a5fa;
+        }
+
+        &.odd {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: #8b5cf6;
+            color: #a78bfa;
+        }
+
+        &.rise {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: #10b981;
+            color: #34d399;
+        }
+
+        &.fall {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+            color: #f87171;
+        }
+    }
+
+    // Pattern Section
+    .pattern-section {
+        margin-top: 2rem;
+
+        .pattern-title {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+            gap: 0.5rem;
+
+            .pattern-box {
+                aspect-ratio: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 8px;
+                font-weight: 700;
+                font-size: 0.9rem;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+
+                &.even {
+                    background: rgba(59, 130, 246, 0.3);
+                    border: 1px solid #3b82f6;
+                    color: #60a5fa;
+                }
+
+                &.odd {
+                    background: rgba(139, 92, 246, 0.3);
+                    border: 1px solid #8b5cf6;
+                    color: #a78bfa;
+                }
+            }
+        }
+    }
+
+    // Last Digits Stream
+    .last-digits-container {
+        background: rgba(15, 23, 42, 0.8);
+        border-radius: 12px;
+        overflow: hidden;
+
+        .digits-header {
+            padding: 1rem;
+            background: rgba(30, 58, 138, 0.3);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            text-align: center;
+
+            .header-label {
+                font-size: 1rem;
+                color: #94a3b8;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+        }
+
+        .digits-content {
+            padding: 1.5rem;
+        }
+
+        .digits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+            gap: 0.75rem;
+
+            .digit-item {
+                aspect-ratio: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 8px;
+                font-weight: 700;
+                font-size: 1.2rem;
+                transition: all 0.2s ease;
+                cursor: pointer;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+
+                &.even-digit {
+                    background: rgba(59, 130, 246, 0.2);
+                    border: 2px solid #3b82f6;
+                    color: #60a5fa;
+                }
+
+                &.odd-digit {
+                    background: rgba(139, 92, 246, 0.2);
+                    border: 2px solid #8b5cf6;
+                    color: #a78bfa;
+                }
+
+                &.latest {
+                    animation: pulse-glow 1.5s infinite;
+                    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+                }
+            }
+        }
+
+        .digits-footer {
+            padding: 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+
+            .toggle-btn {
+                padding: 0.75rem 2rem;
+                background: linear-gradient(135deg, #1e3a8a, #2563eb);
+                border: none;
+                border-radius: 8px;
+                color: #fff;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+                }
+            }
+        }
+    }
+
+    // Animations
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    @keyframes pulse-glow {
+        0%, 100% {
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+        }
+        50% {
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+        }
+    }
+
+    // Responsive
+    @media (max-width: 768px) {
+        &__main {
+            padding: 1rem;
+        }
+
+        &__price-section {
+            flex-direction: column;
+            gap: 1.5rem;
+
+            .price-content .current-price {
+                font-size: 2rem;
+            }
+        }
+
+        &__section {
+            padding: 1.5rem;
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        .digit-grid {
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .digit-container {
+            .digit-circle-wrapper {
+                width: 60px;
+                height: 60px;
+            }
+
+            .digit-circle .digit-number {
+                font-size: 1.5rem;
+            }
+        }
+
+        .stat-card .stat-value {
+            font-size: 2rem;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+"name":"OSAMTRADING HUB",
+"short_name":"OSAMTRADINGHUB",
+"theme_color":"#414652",
+"description":"Trade on your finger prints.",
+"background_color":"#414652",
+"display":"standalone",
+"start_url":"/",
+"icons": [
+ {
+"src":"osamlogo.jpg",
+"sizes":"512x512",
+"type":"image/jpg"
+ }
+   ]
+}

@@ -52,6 +52,13 @@ const useMobileMenuConfig = (client?: RootStore['client']) => {
                 LeftComponent: LegacyTheme1pxIcon,
                 RightComponent: <ToggleSwitch value={is_dark_mode_on} onChange={toggleTheme} />,
             },
+            {
+                as: 'a',
+                href: 'https://bot-analysis-tool-belex.web.app',
+                label: localize('Advance Analysis'),
+                LeftComponent: () => <span style={{ fontSize: '20px' }}>📊</span>,
+                target: '_blank',
+            },
         ],
         (
             [] as TMenuConfig
