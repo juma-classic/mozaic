@@ -54,14 +54,6 @@ const DigitHackerPage = lazy(() => import('../pages/digit-hacker-page').then(m =
 // Signal Savvy Page
 const SignalSavvyPage = lazy(() => import('../pages/signal-savvy-page').then(m => ({ default: m.default })));
 
-// Patel Signals Page
-const PatelSignalsPage = lazy(() => import('../pages/patel-signals-page').then(m => ({ default: m.default })));
-
-// Patel Signal Center Page
-const PatelSignalCenterPage = lazy(() =>
-    import('../pages/patel-signal-center-page').then(m => ({ default: m.default }))
-);
-
 // Rich Mother Page
 const RichMotherPage = lazy(() => import('../pages/rich-mother-page').then(m => ({ default: m.default })));
 
@@ -111,12 +103,6 @@ const router = createBrowserRouter(
 
             {/* Signal Savvy Page */}
             <Route path='signal-savvy' element={<SignalSavvyPage />} />
-
-            {/* Patel Signals Page */}
-            <Route path='patel-signals' element={<PatelSignalsPage />} />
-
-            {/* Patel Signal Center Page */}
-            <Route path='patel-signal-center' element={<PatelSignalCenterPage />} />
 
             {/* Rich Mother Page */}
             <Route path='rich-mother' element={<RichMotherPage />} />
