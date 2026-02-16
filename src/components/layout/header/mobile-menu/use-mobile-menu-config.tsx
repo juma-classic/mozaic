@@ -42,7 +42,7 @@ const useMobileMenuConfig = (client?: RootStore['client']) => {
         [
             {
                 as: 'a',
-                href: 'https://mozaictradinghub.site',
+                href: 'https://mozaictradinghub.com',
                 label: localize('MOZAIC TRADING HUB'),
                 LeftComponent: BrandDerivLogoCoralIcon,
             },
@@ -54,27 +54,7 @@ const useMobileMenuConfig = (client?: RootStore['client']) => {
             },
         ],
         (
-            [
-                cs_chat_whatsapp
-                    ? {
-                          as: 'a',
-                          href: 'https://wa.link/2xcwcb',
-                          label: localize('WhatsApp'),
-                          LeftComponent: LegacyWhatsappIcon,
-                          target: '_blank',
-                      }
-                    : null,
-                is_livechat_available || icAvailable
-                    ? {
-                          as: 'button',
-                          label: localize('Live chat'),
-                          LeftComponent: Livechat,
-                          onClick: () => {
-                              icAvailable ? window.Intercom('show') : window.LiveChatWidget?.call('maximize');
-                          },
-                      }
-                    : null,
-            ] as TMenuConfig
+            [] as TMenuConfig
         ).filter(Boolean),
         client?.is_logged_in
             ? [

@@ -160,43 +160,6 @@ const RichMotherIcon = () => (
     </svg>
 );
 
-const PatelPremiumIcon = () => (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-        {/* Premium diamond/gem */}
-        <path d='M12 2L16 8H8L12 2Z' fill='#ffd700' stroke='currentColor' strokeWidth='1.5' strokeLinejoin='round' />
-        <path
-            d='M8 8L12 22L16 8H8Z'
-            fill='url(#premium-gradient)'
-            stroke='currentColor'
-            strokeWidth='1.5'
-            strokeLinejoin='round'
-        />
-
-        {/* Inner facets */}
-        <path d='M12 2L14 8L12 12L10 8L12 2Z' fill='#ffed4e' opacity='0.7' />
-        <path d='M12 12L10 8L8 8L12 22L12 12Z' fill='#e6c200' opacity='0.5' />
-        <path d='M12 12L14 8L16 8L12 22L12 12Z' fill='#e6c200' opacity='0.5' />
-
-        {/* Premium sparkles */}
-        <circle cx='6' cy='6' r='1' fill='#ffd700' opacity='0.9' />
-        <circle cx='18' cy='6' r='1' fill='#ffd700' opacity='0.9' />
-        <circle cx='4' cy='12' r='0.8' fill='#ffd700' opacity='0.7' />
-        <circle cx='20' cy='12' r='0.8' fill='#ffd700' opacity='0.7' />
-
-        {/* Auto-bot indicator */}
-        <circle cx='12' cy='16' r='2' fill='#10b981' opacity='0.8' />
-        <path d='M12 14L12 18M10 16L14 16' stroke='white' strokeWidth='1' strokeLinecap='round' />
-
-        <defs>
-            <linearGradient id='premium-gradient' x1='12' y1='8' x2='12' y2='22'>
-                <stop offset='0%' stopColor='#ffd700' />
-                <stop offset='50%' stopColor='#ffed4e' />
-                <stop offset='100%' stopColor='#e6c200' />
-            </linearGradient>
-        </defs>
-    </svg>
-);
-
 const TrackSignalsIcon = () => (
     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
         {/* Radar/Scanner circle */}
@@ -1933,40 +1896,6 @@ const AppWrapper = observer(() => {
                             >
                                 <Tutorial handleTabChange={setActiveTab} />
                             </Suspense>
-                        </div>
-                        {/* PATEL PREMIUM TAB */}
-                        <div
-                            label={
-                                <>
-                                    <PatelPremiumIcon />
-                                    <Localize i18n_default_text='Patel Premium' />
-                                    <span
-                                        className='tab-badge'
-                                        style={{
-                                            background: 'linear-gradient(135deg, #ffd700 0%, #ffed4e 100%)',
-                                            color: '#000',
-                                        }}
-                                    >
-                                        💎
-                                    </span>
-                                </>
-                            }
-                            id='id-patel-premium'
-                        >
-                            <div
-                                style={{
-                                    height: 'calc(100vh - 120px)',
-                                    background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)',
-                                    padding: '2rem',
-                                    overflowY: 'auto',
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                }}
-                            >
-                                <div style={{ width: '100%', maxWidth: '1400px' }}>
-                                    <AutoBotLoaderPanel />
-                                </div>
-                            </div>
                         </div>
                         {/* ANALYSIS TOOL TAB */}
                         <div
