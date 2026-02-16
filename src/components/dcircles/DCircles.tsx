@@ -128,7 +128,14 @@ export const DCircles: React.FC = () => {
                         <option value="R_50">Volatility 50 Index</option>
                         <option value="R_75">Volatility 75 Index</option>
                         <option value="R_100">Volatility 100 Index</option>
+                        <option value="1HZ10V">Volatility 10 (1s) Index</option>
+                        <option value="1HZ25V">Volatility 25 (1s) Index</option>
+                        <option value="1HZ50V">Volatility 50 (1s) Index</option>
+                        <option value="1HZ75V">Volatility 75 (1s) Index</option>
                         <option value="1HZ100V">Volatility 100 (1s) Index</option>
+                        <option value="1HZ150V">Volatility 150 (1s) Index</option>
+                        <option value="1HZ250V">Volatility 250 (1s) Index</option>
+                        <option value="1HZ300V">Volatility 300 (1s) Index</option>
                     </select>
                     <div className="selector-label">Market</div>
                 </div>

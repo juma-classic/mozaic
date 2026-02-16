@@ -273,11 +273,19 @@ const AppWrapper = observer(() => {
     useEffect(() => {
         const fetchBots = async () => {
             const botFiles = [
-                'States Digit Switcher.xml', // NEW: States Digit Switcher - First in list
-                'PATEL (with Entry).xml', // Added to top of the list
-                'Game Changer AI (1).xml', // NEW: Game Changer AI bot
-                'Game Changer AI - etrades.xml', // NEW: Game Changer AI - etrades version
-                'Random LDP Differ - Elvis Trades.xml', // NEW: Random LDP Differ bot
+                '_Over 1 under 8 Recovery Even & Odd 2026 💵💯 (5).xml', // Over 1 bot - First priority
+                'MOZAIC AI PRO v1.xml', // MOZAIC AI - Second priority
+                'Speed Auto Bot🦷.xml', // Speed Auto - Third priority
+                '$Dollar printer .xml', // Dollar Printer - Fourth priority
+                'AUTO C4 VOLT 🇬🇧 2 🇬🇧 AI PREMIUM ROBOT  (2) (1).xml', // Auto C4 - Fifth priority
+                'States Digit Switcher.xml',
+                'PATEL (with Entry).xml',
+                'Flipping-Tool-2026 - Elvis Trades (1).xml',
+                'Over 3 Delirium by Elvis Trades.xml',
+                'Random LDP Differ - Elvis Trades.xml',
+                'Raziel Over Under.xml',
+                'Game Changer AI (1).xml',
+                'Game Changer AI - etrades.xml',
                 'CFX-025-Base.xml',
                 'CFX-025-Step1.xml',
                 'CFX-025-Step2.xml',
@@ -294,23 +302,15 @@ const AppWrapper = observer(() => {
                 'Odins_ghost.xml',
                 'M27 Auto Switch bot 2024 (1).xml',
                 'Even Odd Ghost V1 by Dexter.xml',
-
-                'Over 3 Delirium by Elvis Trades.xml',
                 'GreenLight Pro - 2026 Over .xml',
-
                 'EVENODD Double loss Bot .xml',
                 'Over2 Master.xml',
                 'CFX - 025.xml',
-                'Raziel Over Under.xml',
                 'Raziel Over Under Entry Point.xml',
                 'noloss bot.xml',
                 'Elvis SpeedBot(With Entry).xml',
-                'AUTO C4 VOLT 🇬🇧 2 🇬🇧 AI PREMIUM ROBOT  (2) (1).xml',
-                '$Dollar printer .xml',
-
                 'Over_Under Ghost - by ElvisTrades.xml',
                 'Over_Under Ghost v2 - by Elvis Trades.xml',
-                'Flipping-Tool-2026 - Elvis Trades (1).xml',
             ];
             const botPromises = botFiles.map(async file => {
                 try {
