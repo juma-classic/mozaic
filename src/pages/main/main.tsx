@@ -31,8 +31,8 @@ import SignalsScanner from '@/components/tracktool/SignalsScanner';
 import MarketAnalyzer from '@/components/tracktool/MarketAnalyzer';
 import TradingCalculator from '@/components/tracktool/TradingCalculator';
 
-// Digit Analysis Component
-import { DigitAnalysis } from '@/components/digit-analysis/DigitAnalysis';
+// DCircles Component
+import { DCircles } from '@/components/dcircles/DCircles';
 
 const DashboardIcon = () => (
     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -235,32 +235,6 @@ const TrackCalculatorIcon = () => (
         {/* Sparkle effect */}
         <circle cx='17' cy='6' r='0.8' fill='#ffd700' opacity='0.8' />
         <circle cx='19' cy='8' r='0.6' fill='#ffd700' opacity='0.6' />
-    </svg>
-);
-
-const DigitAnalysisIcon = () => (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-        {/* Circular analysis rings */}
-        <circle cx='12' cy='12' r='9' stroke='#1e3a8a' strokeWidth='1.5' fill='none' opacity='0.3' />
-        <circle cx='12' cy='12' r='6' stroke='#2563eb' strokeWidth='1.5' fill='none' opacity='0.5' />
-        
-        {/* Digit segments around circle */}
-        <circle cx='12' cy='4' r='1.2' fill='#3b82f6' />
-        <circle cx='17' cy='7' r='1.2' fill='#10b981' />
-        <circle cx='19' cy='12' r='1.2' fill='#f59e0b' />
-        <circle cx='17' cy='17' r='1.2' fill='#ef4444' />
-        <circle cx='12' cy='20' r='1.2' fill='#8b5cf6' />
-        <circle cx='7' cy='17' r='1.2' fill='#ec4899' />
-        <circle cx='5' cy='12' r='1.2' fill='#14b8a6' />
-        <circle cx='7' cy='7' r='1.2' fill='#f97316' />
-        
-        {/* Center core with number */}
-        <circle cx='12' cy='12' r='3' fill='#1e3a8a' opacity='0.8' />
-        <text x='12' y='14' fontSize='5' fill='#ffd700' textAnchor='middle' fontWeight='bold'>0</text>
-        
-        {/* Analysis lines */}
-        <path d='M12 12L12 4' stroke='#3b82f6' strokeWidth='1' opacity='0.6' />
-        <path d='M12 12L19 12' stroke='#f59e0b' strokeWidth='1' opacity='0.6' />
     </svg>
 );
 
@@ -1896,18 +1870,19 @@ const AppWrapper = observer(() => {
                             }
                             id='id-bot-builder'
                         />
-                        {/* DIGIT ANALYSIS TAB */}
+                        {/* DCIRCLES TAB */}
                         <div
                             label={
                                 <>
-                                    <DigitAnalysisIcon />
-                                    <Localize i18n_default_text='Digit Analysis' />
+                                    <span style={{ fontSize: '20px' }}>⭕</span>
+                                    <Localize i18n_default_text='DCircles' />
                                 </>
                             }
-                            id='id-digit-analysis'
+                            id='id-dcircles'
                         >
-                            <DigitAnalysis />
+                            <DCircles />
                         </div>
+                        {/* DIGIT ANALYSIS TAB */}
                         {/* CHARTS TAB */}
                         <div
                             label={
