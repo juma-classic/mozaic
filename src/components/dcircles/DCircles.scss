@@ -215,6 +215,7 @@
     border-radius: 0;
     border: none;
     line-height: 1;
+    font-weight: 810; /* 600 * 1.35 (increased by 35%) */
 }
 
 .digit-percentage.highest {
@@ -318,6 +319,24 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+}
+
+.overunder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.overunder-grid .stat-card.equal {
+    order: 0;
+}
+
+.overunder-grid .stat-card.over {
+    order: -1;
+}
+
+.overunder-grid .stat-card.under {
+    order: 1;
 }
 
 .stat-card {
@@ -614,6 +633,7 @@
 
     .digit-percentage {
         font-size: 0.65rem; /* Reduced from 1.05rem */
+        font-weight: 900; /* 600 * 1.5 (increased by 50%) */
     }
 
     .current-indicator {
@@ -655,6 +675,11 @@
     }
 
     .eo-grid {
+        gap: 0.4rem;
+    }
+
+    .overunder-grid {
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 0.4rem;
     }
 
@@ -769,6 +794,7 @@
 
     .digit-percentage {
         font-size: 0.55rem;
+        font-weight: 900; /* 600 * 1.5 (increased by 50%) */
     }
 
     .digit-btn {

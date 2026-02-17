@@ -297,7 +297,7 @@ export const DCircles: React.FC = () => {
                     </>
                 ) : (
                     <>
-                        <div className="eo-grid">
+                        <div className="overunder-grid">
                             <div className="stat-card over">
                                 <div className="stat-value">
                                     {(() => {
@@ -312,6 +312,21 @@ export const DCircles: React.FC = () => {
                                 </div>
                                 <div className="stat-label">Over {selectedDigit !== null ? selectedDigit : 4}</div>
                             </div>
+                            {selectedDigit !== null && (
+                                <div className="stat-card equal">
+                                    <div className="stat-value">
+                                        {(() => {
+                                            let equal = 0;
+                                            ticks.forEach(tick => {
+                                                const digit = getLastDigit(tick.quote);
+                                                if (digit === selectedDigit) equal++;
+                                            });
+                                            return ((equal / ticks.length) * 100).toFixed(1);
+                                        })()}%
+                                    </div>
+                                    <div className="stat-label">Equal to {selectedDigit}</div>
+                                </div>
+                            )}
                             <div className="stat-card under">
                                 <div className="stat-value">
                                     {(() => {
@@ -327,21 +342,6 @@ export const DCircles: React.FC = () => {
                                 <div className="stat-label">Under {selectedDigit !== null ? selectedDigit : 4}</div>
                             </div>
                         </div>
-                        {selectedDigit !== null && (
-                            <div className="equal-stat">
-                                <div className="stat-value">
-                                    {(() => {
-                                        let equal = 0;
-                                        ticks.forEach(tick => {
-                                            const digit = getLastDigit(tick.quote);
-                                            if (digit === selectedDigit) equal++;
-                                        });
-                                        return ((equal / ticks.length) * 100).toFixed(1);
-                                    })()}%
-                                </div>
-                                <div className="stat-label">Equal to {selectedDigit}</div>
-                            </div>
-                        )}
                         <div className="last-digits-pattern">
                             <div className="pattern-label">
                                 Last 50 Digits Pattern {selectedDigit !== null ? `(vs ${selectedDigit})` : '(vs 4)'}
