@@ -12,6 +12,8 @@ export const DCircles: React.FC = () => {
     const [selectedDigit, setSelectedDigit] = useState<number | null>(null);
     const [currentPrice, setCurrentPrice] = useState<number | null>(null);
     const [pipSize, setPipSize] = useState(2);
+    const [totalTicks, setTotalTicks] = useState(1000);
+    const [patternView, setPatternView] = useState<'evenodd' | 'overunder'>('evenodd');
     const wsRef = useRef<WebSocket | null>(null);
 
     useEffect(() => {
@@ -84,22 +86,6 @@ export const DCircles: React.FC = () => {
     const maxPercent = Math.max(...digitDistribution);
     const minPercent = Math.min(...digitDistribution.filter(p => p > 0));
 
-    const comparisonStats = selectedDigit !== null ? (() => {
-        let over = 0, under = 0, equal = 0;
-        ticks.forEach(tick => {
-            const digit = getLastDigit(tick.quote);
-            if (digit > selectedDigit) over++;
-            else if (digit < selectedDigit) under++;
-            else equal++;
-        });
-        const total = ticks.length;
-        return {
-            over: (over / total) * 100,
-            under: (under / total) * 100,
-            equal: (equal / total) * 100
-        };
-    })() : null;
-
     const evenOddStats = (() => {
         let even = 0, odd = 0;
         ticks.forEach(tick => {
@@ -113,6 +99,26 @@ export const DCircles: React.FC = () => {
             odd: (odd / total) * 100
         };
     })();
+
+    const risesFallsStats = (() => {
+        let rises = 0, falls = 0;
+        for (let i = 1; i < ticks.length; i++) {
+            if (ticks[i].quote > ticks[i - 1].quote) rises++;
+            else if (ticks[i].quote < ticks[i - 1].quote) falls++;
+        }
+        const total = ticks.length - 1;
+        return {
+            rises: (rises / total) * 100,
+            falls: (falls / total) * 100
+        };
+    })();
+
+    const last50Digits = ticks.slice(-50).map(tick => getLastDigit(tick.quote));
+
+    const showMoreDigits = () => {
+        // Show more digits in the stream
+        console.log('Show more digits');
+    };
 
     return (
         <div className="dcircles-container">
@@ -137,7 +143,7 @@ export const DCircles: React.FC = () => {
                         <option value="1HZ250V">Volatility 250 (1s) Index</option>
                         <option value="1HZ300V">Volatility 300 (1s) Index</option>
                     </select>
-                    <div className="selector-label">Market</div>
+                    <div className="selector-label">MARKET</div>
                 </div>
             </div>
 
@@ -151,29 +157,45 @@ export const DCircles: React.FC = () => {
 
                         return (
                             <div key={digit} className="digit-container">
-                                {digit === currentDigit && <div className="current-indicator">▼</div>}
+                                {digit === currentDigit && (
+                                    <div className="current-indicator">
+                                        <svg width="10" height="8" viewBox="0 0 20 16" fill="none">
+                                            <path d="M10 16L0 0H20L10 16Z" fill="#fbbf24"/>
+                                        </svg>
+                                    </div>
+                                )}
                                 <div className="digit-circle-wrapper">
                                     <div className="digit-circle">
                                         <svg className="progress-ring" viewBox="0 0 64 64">
                                             <circle
                                                 cx="32"
                                                 cy="32"
-                                                r="26"
+                                                r="28"
                                                 fill="none"
-                                                stroke={isLowest ? '#ef4444' : isHighest ? '#10b981' : '#374151'}
-                                                strokeWidth="4"
-                                                strokeDasharray={`${(progress / 100) * 163.4} 163.4`}
+                                                stroke="rgba(255,255,255,0.1)"
+                                                strokeWidth="3"
+                                            />
+                                            <circle
+                                                cx="32"
+                                                cy="32"
+                                                r="28"
+                                                fill="none"
+                                                stroke={isLowest ? '#ef4444' : isHighest ? '#10b981' : '#6b7280'}
+                                                strokeWidth="3"
+                                                strokeDasharray={`${(progress / 100) * 175.9} 175.9`}
                                                 strokeLinecap="round"
                                                 transform="rotate(-90 32 32)"
                                             />
                                         </svg>
-                                        <div className={`digit-number ${digit === currentDigit ? 'current' : isLowest ? 'lowest' : isHighest ? 'highest' : ''}`}>
-                                            {digit}
+                                        <div className="digit-content">
+                                            <div className={`digit-number ${isLowest ? 'lowest' : isHighest ? 'highest' : ''}`}>
+                                                {digit}
+                                            </div>
+                                            <div className={`digit-percentage ${isLowest ? 'lowest' : isHighest ? 'highest' : ''}`}>
+                                                {percent.toFixed(1)}%
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className={`digit-percentage ${isLowest ? 'lowest' : isHighest ? 'highest' : ''}`}>
-                                    {percent.toFixed(1)}%
                                 </div>
                             </div>
                         );
@@ -188,7 +210,7 @@ export const DCircles: React.FC = () => {
             <section className="analysis-section">
                 <h2>Digit Comparison</h2>
                 <div className="digit-selector">
-                    <div className="selector-label">Select a digit to analyze:</div>
+                    <div className="selector-label-small">SELECT A DIGIT TO ANALYZE:</div>
                     <div className="digit-buttons">
                         {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(d => (
                             <button
@@ -201,34 +223,191 @@ export const DCircles: React.FC = () => {
                         ))}
                     </div>
                 </div>
-                {comparisonStats && (
-                    <div className="comparison-grid">
-                        <div className="stat-card over">
-                            <div className="stat-value">{comparisonStats.over.toFixed(1)}%</div>
-                            <div className="stat-label">Over {selectedDigit}</div>
+                {selectedDigit !== null && (() => {
+                    let over = 0, under = 0, equal = 0;
+                    ticks.forEach(tick => {
+                        const digit = getLastDigit(tick.quote);
+                        if (digit > selectedDigit) over++;
+                        else if (digit < selectedDigit) under++;
+                        else equal++;
+                    });
+                    const total = ticks.length;
+                    return (
+                        <div className="comparison-results">
+                            <div className="comparison-grid">
+                                <div className="stat-card over">
+                                    <div className="stat-value">{((over / total) * 100).toFixed(1)}%</div>
+                                    <div className="stat-label">Over {selectedDigit}</div>
+                                </div>
+                                <div className="stat-card under">
+                                    <div className="stat-value">{((under / total) * 100).toFixed(1)}%</div>
+                                    <div className="stat-label">Under {selectedDigit}</div>
+                                </div>
+                                <div className="stat-card equal">
+                                    <div className="stat-value">{((equal / total) * 100).toFixed(1)}%</div>
+                                    <div className="stat-label">Equal {selectedDigit}</div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="stat-card under">
-                            <div className="stat-value">{comparisonStats.under.toFixed(1)}%</div>
-                            <div className="stat-label">Under {selectedDigit}</div>
-                        </div>
-                        <div className="stat-card equal">
-                            <div className="stat-value">{comparisonStats.equal.toFixed(1)}%</div>
-                            <div className="stat-label">Equal {selectedDigit}</div>
-                        </div>
+                    );
+                })()}
+            </section>
+
+            <section className="analysis-section">
+                <div className="section-header-with-toggle">
+                    <h2>Pattern Analysis</h2>
+                    <div className="toggle-buttons">
+                        <button 
+                            className={`toggle-btn ${patternView === 'evenodd' ? 'active' : ''}`}
+                            onClick={() => setPatternView('evenodd')}
+                        >
+                            Even/Odd
+                        </button>
+                        <button 
+                            className={`toggle-btn ${patternView === 'overunder' ? 'active' : ''}`}
+                            onClick={() => setPatternView('overunder')}
+                        >
+                            Over/Under
+                        </button>
                     </div>
+                </div>
+                
+                {patternView === 'evenodd' ? (
+                    <>
+                        <div className="eo-grid">
+                            <div className="stat-card even">
+                                <div className="stat-value">{evenOddStats.even.toFixed(1)}%</div>
+                                <div className="stat-label">Even</div>
+                            </div>
+                            <div className="stat-card odd">
+                                <div className="stat-value">{evenOddStats.odd.toFixed(1)}%</div>
+                                <div className="stat-label">Odd</div>
+                            </div>
+                        </div>
+                        <div className="last-digits-pattern">
+                            <div className="pattern-label">Last 50 Digits Pattern</div>
+                            <div className="digits-stream-mini">
+                                {last50Digits.map((digit, idx) => (
+                                    <span key={idx} className={`digit-badge ${digit % 2 === 0 ? 'even' : 'odd'}`}>
+                                        {digit}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div className="eo-grid">
+                            <div className="stat-card over">
+                                <div className="stat-value">
+                                    {(() => {
+                                        const compareDigit = selectedDigit !== null ? selectedDigit : 4;
+                                        let over = 0;
+                                        ticks.forEach(tick => {
+                                            const digit = getLastDigit(tick.quote);
+                                            if (digit > compareDigit) over++;
+                                        });
+                                        return ((over / ticks.length) * 100).toFixed(1);
+                                    })()}%
+                                </div>
+                                <div className="stat-label">Over {selectedDigit !== null ? selectedDigit : 4}</div>
+                            </div>
+                            <div className="stat-card under">
+                                <div className="stat-value">
+                                    {(() => {
+                                        const compareDigit = selectedDigit !== null ? selectedDigit : 4;
+                                        let under = 0;
+                                        ticks.forEach(tick => {
+                                            const digit = getLastDigit(tick.quote);
+                                            if (digit < compareDigit) under++;
+                                        });
+                                        return ((under / ticks.length) * 100).toFixed(1);
+                                    })()}%
+                                </div>
+                                <div className="stat-label">Under {selectedDigit !== null ? selectedDigit : 4}</div>
+                            </div>
+                        </div>
+                        {selectedDigit !== null && (
+                            <div className="equal-stat">
+                                <div className="stat-value">
+                                    {(() => {
+                                        let equal = 0;
+                                        ticks.forEach(tick => {
+                                            const digit = getLastDigit(tick.quote);
+                                            if (digit === selectedDigit) equal++;
+                                        });
+                                        return ((equal / ticks.length) * 100).toFixed(1);
+                                    })()}%
+                                </div>
+                                <div className="stat-label">Equal to {selectedDigit}</div>
+                            </div>
+                        )}
+                        <div className="last-digits-pattern">
+                            <div className="pattern-label">
+                                Last 50 Digits Pattern {selectedDigit !== null ? `(vs ${selectedDigit})` : '(vs 4)'}
+                            </div>
+                            <div className="digits-stream-mini">
+                                {last50Digits.map((digit, idx) => {
+                                    const compareDigit = selectedDigit !== null ? selectedDigit : 4;
+                                    let badgeClass = 'under';
+                                    if (digit > compareDigit) badgeClass = 'over';
+                                    else if (digit === compareDigit) badgeClass = 'equal';
+                                    return (
+                                        <span key={idx} className={`digit-badge ${badgeClass}`}>
+                                            {digit}
+                                        </span>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </>
                 )}
             </section>
 
             <section className="analysis-section">
-                <h2>Even/Odd Pattern</h2>
+                <h2>Market Movement</h2>
                 <div className="eo-grid">
-                    <div className="stat-card even">
-                        <div className="stat-value">{evenOddStats.even.toFixed(1)}%</div>
-                        <div className="stat-label">Even</div>
+                    <div className="stat-card rise">
+                        <div className="stat-value">{risesFallsStats.rises.toFixed(1)}%</div>
+                        <div className="stat-label">RISE</div>
                     </div>
-                    <div className="stat-card odd">
-                        <div className="stat-value">{evenOddStats.odd.toFixed(1)}%</div>
-                        <div className="stat-label">Odd</div>
+                    <div className="stat-card fall">
+                        <div className="stat-value">{risesFallsStats.falls.toFixed(1)}%</div>
+                        <div className="stat-label">FALL</div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="analysis-section">
+                <h2>Last Digits Stream</h2>
+                <div className="stream-header">
+                    <div className="stream-label">LATEST DIGITS (IN REVERSE)</div>
+                </div>
+                <div className="digits-stream">
+                    {ticks.slice(-100).reverse().map((tick, idx) => {
+                        const digit = getLastDigit(tick.quote);
+                        return (
+                            <span key={idx} className={`digit-badge ${digit % 2 === 0 ? 'even' : 'odd'}`}>
+                                {digit}
+                            </span>
+                        );
+                    })}
+                </div>
+                <button className="show-more-btn" onClick={showMoreDigits}>
+                    Show More Digits
+                </button>
+            </section>
+
+            <section className="analysis-section">
+                <h2>Statistics</h2>
+                <div className="statistics-grid">
+                    <div className="stat-item">
+                        <span className="stat-item-label">Total Ticks</span>
+                        <span className="stat-item-value">{ticks.length}</span>
+                    </div>
+                    <div className="stat-item">
+                        <span className="stat-item-label">Pip Size</span>
+                        <span className="stat-item-value">{pipSize}</span>
                     </div>
                 </div>
             </section>

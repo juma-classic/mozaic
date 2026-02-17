@@ -1,85 +1,135 @@
 .dcircles-container {
     width: 100%;
-    max-width: 1400px;
+    max-width: 980px; /* 700px * 1.4 */
     margin: 0 auto;
     min-height: calc(100vh - 120px);
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    padding: 2rem;
+    background: var(--general-main-1);
+    padding: 1.5rem;
     overflow-y: auto;
-    color: #fff;
+    color: var(--text-prominent);
 }
 
 .dcircles-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    gap: 2rem;
-    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    gap: 1.5rem;
 }
 
 .price-display {
-    text-align: center;
+    text-align: left;
 }
 
 .current-price {
-    font-size: 3rem;
+    font-size: 2.6rem; /* 2rem * 1.3 */
     font-weight: 700;
-    color: #3b82f6;
-    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    color: var(--brand-red-coral);
+    letter-spacing: 0.05em;
 }
 
 .price-label {
-    font-size: 0.9rem;
-    color: #94a3b8;
-    margin-top: 0.5rem;
+    font-size: 0.975rem; /* 0.75rem * 1.3 */
+    color: var(--text-less-prominent);
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .market-selector {
-    text-align: center;
+    text-align: right;
 }
 
 .market-selector select {
-    padding: 0.75rem 1.5rem;
-    background: rgba(30, 58, 138, 0.3);
-    border: 2px solid #1e3a8a;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    background: var(--general-section-1);
+    border: 1px solid var(--border-normal);
+    border-radius: 6px;
+    color: var(--text-general);
+    font-size: 1.105rem; /* 0.85rem * 1.3 */
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .market-selector select:hover {
-    border-color: #2563eb;
-    background: rgba(37, 99, 235, 0.2);
+    border-color: var(--border-hover);
+    background: var(--general-section-2);
 }
 
 .selector-label {
-    font-size: 0.9rem;
-    color: #94a3b8;
-    margin-top: 0.5rem;
+    font-size: 0.91rem; /* 0.7rem * 1.3 */
+    color: var(--text-less-prominent);
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .analysis-section {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(59, 130, 246, 0.2);
-    border-radius: 16px;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    background: var(--general-section-1);
+    border: 1px solid var(--border-normal);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .analysis-section h2 {
-    color: #3b82f6;
-    font-size: 1.5rem;
+    color: var(--text-less-prominent);
+    font-size: 1.3rem; /* 1rem * 1.3 */
+    font-weight: 500;
     margin-bottom: 1.5rem;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.section-header-with-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.section-header-with-toggle h2 {
+    margin-bottom: 0;
+}
+
+.toggle-buttons {
+    display: flex;
+    gap: 0.5rem;
+    background: var(--general-section-2);
+    padding: 0.25rem;
+    border-radius: 8px;
+}
+
+.toggle-btn {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--text-general);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.toggle-btn:hover {
+    background: var(--general-hover);
+}
+
+.toggle-btn.active {
+    background: var(--brand-red-coral);
+    color: var(--text-colored-background);
 }
 
 .digit-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.75rem;
     margin-bottom: 1rem;
 }
 
@@ -88,17 +138,32 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+    position: relative;
 }
 
 .current-indicator {
-    color: #fbbf24;
-    font-size: 1.5rem;
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 1s ease-in-out infinite;
+    z-index: 10;
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8));
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-4px);
+    }
 }
 
 .digit-circle-wrapper {
     position: relative;
-    width: 64px;
-    height: 64px;
+    width: 65px; /* Increased from 50px to accommodate larger digit */
+    height: 65px; /* Increased from 50px to accommodate larger digit */
 }
 
 .digit-circle {
@@ -118,60 +183,79 @@
     height: 100%;
 }
 
-.digit-number {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #cbd5e1;
+.digit-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     z-index: 1;
+    gap: 0.1rem;
 }
 
-.digit-number.current {
-    color: #fbbf24;
-    text-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
+.digit-number {
+    font-size: 2.4375rem; /* 1.625rem * 1.5 */
+    font-weight: 600;
+    color: var(--text-general);
+    line-height: 1;
 }
 
 .digit-number.highest {
-    color: #10b981;
+    color: var(--text-profit-success);
 }
 
 .digit-number.lowest {
-    color: #ef4444;
+    color: var(--text-loss-danger);
 }
 
 .digit-percentage {
-    font-size: 0.9rem;
-    color: #94a3b8;
+    font-size: 1.05rem; /* 1.4rem * 0.75 (reduced by 25%) */
+    color: var(--text-less-prominent);
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    line-height: 1;
 }
 
 .digit-percentage.highest {
-    color: #10b981;
-    font-weight: 600;
+    color: var(--text-profit-success);
+    background: transparent;
+    border: none;
 }
 
 .digit-percentage.lowest {
-    color: #ef4444;
-    font-weight: 600;
+    color: var(--text-loss-danger);
+    background: transparent;
+    border: none;
 }
 
 .analysis-stats {
     text-align: center;
-    color: #cbd5e1;
-    font-size: 0.95rem;
+    color: var(--text-less-prominent);
+    font-size: 1.6575rem; /* 1.105rem * 1.5 */
     margin-top: 1rem;
 }
 
 .stat-highest {
-    color: #10b981;
+    color: var(--text-profit-success);
     font-weight: 600;
 }
 
 .stat-lowest {
-    color: #ef4444;
+    color: var(--text-loss-danger);
     font-weight: 600;
 }
 
 .digit-selector {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
+}
+
+.selector-label-small {
+    font-size: 0.91rem; /* 0.7rem * 1.3 */
+    color: var(--text-less-prominent);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .digit-buttons {
@@ -179,119 +263,534 @@
     gap: 0.5rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 1rem;
 }
 
 .digit-btn {
-    width: 48px;
-    height: 48px;
-    border: 2px solid #1e3a8a;
-    background: rgba(30, 58, 138, 0.2);
-    color: #cbd5e1;
-    border-radius: 8px;
-    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--border-normal);
+    background: var(--general-section-2);
+    color: var(--text-general);
+    border-radius: 6px;
+    font-size: 1.3rem; /* 1rem * 1.3 */
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .digit-btn:hover {
-    border-color: #2563eb;
-    background: rgba(37, 99, 235, 0.3);
-    transform: translateY(-2px);
+    border-color: var(--border-hover);
+    background: var(--general-hover);
 }
 
 .digit-btn.selected {
-    border-color: #3b82f6;
-    background: linear-gradient(135deg, #1e3a8a, #2563eb);
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    border-color: var(--brand-red-coral);
+    background: var(--button-primary-light-default);
+    color: var(--brand-red-coral);
+}
+
+.comparison-results {
+    margin-top: 1.5rem;
 }
 
 .comparison-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stat-card.over {
+    border-color: var(--status-success);
+    background: var(--status-success);
+}
+
+.stat-card.under {
+    border-color: var(--status-danger);
+    background: var(--status-danger);
+}
+
+.stat-card.equal {
+    border-color: var(--status-warning);
+    background: var(--status-warning);
+}
+
+.eo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
 .stat-card {
-    background: rgba(30, 58, 138, 0.2);
-    border: 2px solid #1e3a8a;
-    border-radius: 12px;
+    background: transparent;
+    border: 1px solid;
+    border-radius: 8px;
     padding: 1.5rem;
     text-align: center;
     transition: all 0.3s ease;
 }
 
-.stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-}
-
-.stat-card.over {
-    border-color: #10b981;
-    background: rgba(16, 185, 129, 0.1);
-}
-
-.stat-card.under {
-    border-color: #ef4444;
-    background: rgba(239, 68, 68, 0.1);
-}
-
-.stat-card.equal {
-    border-color: #f59e0b;
-    background: rgba(245, 158, 11, 0.1);
-}
-
 .stat-card.even {
-    border-color: #3b82f6;
-    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--status-success);
+    background: var(--status-success);
 }
 
 .stat-card.odd {
-    border-color: #8b5cf6;
-    background: rgba(139, 92, 246, 0.1);
+    border-color: var(--status-danger);
+    background: var(--status-danger);
+}
+
+.stat-card.rise {
+    border-color: var(--status-success);
+    background: var(--status-success);
+}
+
+.stat-card.fall {
+    border-color: var(--status-danger);
+    background: var(--status-danger);
 }
 
 .stat-value {
-    font-size: 2rem;
+    font-size: 2.275rem; /* 1.75rem * 1.3 */
     font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.stat-card.even .stat-value {
+    color: #ffffff;
+}
+
+.stat-card.odd .stat-value {
+    color: #ffffff;
+}
+
+.stat-card.rise .stat-value {
+    color: #ffffff;
+}
+
+.stat-card.fall .stat-value {
+    color: #ffffff;
 }
 
 .stat-label {
-    font-size: 0.9rem;
-    color: #94a3b8;
+    font-size: 0.975rem; /* 0.75rem * 1.3 */
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.last-digits-pattern {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-normal);
+}
+
+.pattern-label {
+    font-size: 0.91rem; /* 0.7rem * 1.3 */
+    color: var(--text-less-prominent);
+    margin-bottom: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
-.eo-grid {
+.digits-stream-mini {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.digit-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; /* Increased from 28px to accommodate larger font */
+    height: 36px; /* Increased from 28px to accommodate larger font */
+    border-radius: 4px;
+    font-size: 1.56rem; /* 1.04rem * 1.5 */
+    font-weight: 600;
+    border: 1px solid;
+}
+
+.digit-badge.even {
+    background: var(--status-success);
+    border-color: var(--status-success);
+    color: #ffffff;
+}
+
+.digit-badge.odd {
+    background: var(--status-danger);
+    border-color: var(--status-danger);
+    color: #ffffff;
+}
+
+.digit-badge.over {
+    background: var(--status-success);
+    border-color: var(--status-success);
+    color: #ffffff;
+}
+
+.digit-badge.under {
+    background: var(--status-danger);
+    border-color: var(--status-danger);
+    color: #ffffff;
+}
+
+.digit-badge.equal {
+    background: var(--status-warning);
+    border-color: var(--status-warning);
+    color: #ffffff;
+}
+
+.equal-stat {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--status-warning);
+    border: 1px solid var(--status-warning);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.equal-stat .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+}
+
+.equal-stat .stat-label {
+    font-size: 0.875rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.stream-header {
+    margin-bottom: 1rem;
+}
+
+.stream-label {
+    font-size: 1.365rem; /* 0.91rem * 1.5 */
+    color: var(--text-less-prominent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.digits-stream {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 1.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 0.5rem;
+    background: var(--general-main-2);
+    border-radius: 8px;
+}
+
+.show-more-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--button-primary-default);
+    border: none;
+    border-radius: 8px;
+    color: var(--text-colored-background);
+    font-size: 1.6575rem; /* 1.105rem * 1.5 */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.show-more-btn:hover {
+    background: var(--button-primary-hover);
+    transform: translateY(-1px);
+}
+
+.statistics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: var(--general-section-2);
+    border: 1px solid var(--border-normal);
+    border-radius: 6px;
+}
+
+.stat-item-label {
+    font-size: 1.105rem; /* 0.85rem * 1.3 */
+    color: var(--text-less-prominent);
+}
+
+.stat-item-value {
+    font-size: 1.3rem; /* 1rem * 1.3 */
+    font-weight: 600;
+    color: var(--brand-red-coral);
 }
 
 @media (max-width: 768px) {
     .dcircles-container {
-        padding: 1rem;
+        padding: 0.75rem;
+        max-width: 100%;
     }
 
     .dcircles-header {
         flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .price-display,
+    .market-selector {
+        text-align: center;
     }
 
     .current-price {
-        font-size: 2rem;
+        font-size: 1.8rem; /* Reduced from 2.275rem */
+    }
+
+    .price-label,
+    .selector-label {
+        font-size: 0.7rem;
+    }
+
+    .market-selector select {
+        width: 100%;
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .analysis-section {
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+    }
+
+    .analysis-section h2 {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .section-header-with-toggle {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .section-header-with-toggle h2 {
+        text-align: center;
+    }
+
+    .toggle-buttons {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .toggle-btn {
+        flex: 1;
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
     }
 
     .digit-grid {
         grid-template-columns: repeat(5, 1fr);
-        gap: 1rem;
+        gap: 0.4rem;
+    }
+
+    .digit-circle-wrapper {
+        width: 45px;
+        height: 45px;
+    }
+
+    .digit-number {
+        font-size: 1.4rem; /* Reduced from 2.4375rem */
+    }
+
+    .digit-percentage {
+        font-size: 0.65rem; /* Reduced from 1.05rem */
+    }
+
+    .current-indicator {
+        top: -14px;
+    }
+
+    .current-indicator svg {
+        width: 12px;
+        height: 10px;
+    }
+
+    .analysis-stats {
+        font-size: 0.8rem;
+        margin-top: 0.75rem;
+    }
+
+    .selector-label-small {
+        font-size: 0.7rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .digit-buttons {
+        gap: 0.4rem;
+    }
+
+    .digit-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .comparison-results {
+        margin-top: 1rem;
+    }
+
+    .comparison-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.4rem;
+    }
+
+    .eo-grid {
+        gap: 0.4rem;
+    }
+
+    .stat-card {
+        padding: 0.5rem 0.25rem;
+    }
+
+    .stat-value {
+        font-size: 1.3rem;
+    }
+
+    .stat-label {
+        font-size: 0.6rem;
+    }
+
+    .equal-stat {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .equal-stat .stat-value {
+        font-size: 1.1rem;
+    }
+
+    .equal-stat .stat-label {
+        font-size: 0.6rem;
+    }
+
+    .last-digits-pattern {
+        margin-top: 1rem;
+        padding-top: 1rem;
+    }
+
+    .pattern-label {
+        font-size: 0.7rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .digits-stream-mini {
+        gap: 0.25rem;
+    }
+
+    .digit-badge {
+        width: 26px;
+        height: 26px;
+        font-size: 0.85rem; /* Reduced from 1.56rem */
+    }
+
+    .stream-header {
+        margin-bottom: 0.75rem;
+    }
+
+    .stream-label {
+        font-size: 0.75rem;
+    }
+
+    .digits-stream {
+        gap: 0.25rem;
+        max-height: 150px;
+        padding: 0.4rem;
+    }
+
+    .show-more-btn {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    .statistics-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .stat-item {
+        padding: 0.6rem 0.75rem;
+    }
+
+    .stat-item-label {
+        font-size: 0.8rem;
+    }
+
+    .stat-item-value {
+        font-size: 1rem;
+    }
+}
+
+/* Extra small phones (< 375px) */
+@media (max-width: 374px) {
+    .dcircles-container {
+        padding: 0.5rem;
+    }
+
+    .current-price {
+        font-size: 1.5rem;
     }
 
     .analysis-section {
-        padding: 1rem;
+        padding: 0.5rem;
+    }
+
+    .analysis-section h2 {
+        font-size: 0.85rem;
+    }
+
+    .digit-circle-wrapper {
+        width: 40px;
+        height: 40px;
+    }
+
+    .digit-number {
+        font-size: 1.2rem;
+    }
+
+    .digit-percentage {
+        font-size: 0.55rem;
+    }
+
+    .digit-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+
+    .stat-value {
+        font-size: 1.4rem;
+    }
+
+    .digit-badge {
+        width: 24px;
+        height: 24px;
+        font-size: 0.75rem;
+    }
+
+    .toggle-btn {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.6rem;
     }
 }
+
+/* Mobile optimizations complete */

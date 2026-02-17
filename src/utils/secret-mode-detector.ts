@@ -153,38 +153,19 @@ class SecretModeDetector {
         
         if (!currentMode) {
             // Enable fake real mode
-            const confirmed = window.confirm(
-                '🇺🇸 Fake Real Account Mode Unlocked!\n\n' +
-                'This will:\n' +
-                '• Display your demo account as a real USD account\n' +
-                '• Add fake USDt and LTC accounts\n' +
-                '• Hide the demo tab\n\n' +
-                'Continue?'
-            );
+            localStorage.setItem('demo_icon_us_flag', 'true');
+            localStorage.setItem('fake_real_mode_acknowledged', 'true');
+            console.log('✅ Fake Real Mode ENABLED');
             
-            if (confirmed) {
-                localStorage.setItem('demo_icon_us_flag', 'true');
-                localStorage.setItem('fake_real_mode_acknowledged', 'true');
-                console.log('✅ Fake Real Mode ENABLED');
-                
-                // Reload to apply changes
-                window.location.reload();
-            }
+            // Reload to apply changes
+            window.location.reload();
         } else {
             // Disable fake real mode
-            const confirmed = window.confirm(
-                '🔄 Disable Fake Real Account Mode?\n\n' +
-                'This will restore normal account display.\n\n' +
-                'Continue?'
-            );
+            localStorage.setItem('demo_icon_us_flag', 'false');
+            console.log('✅ Fake Real Mode DISABLED');
             
-            if (confirmed) {
-                localStorage.setItem('demo_icon_us_flag', 'false');
-                console.log('✅ Fake Real Mode DISABLED');
-                
-                // Reload to apply changes
-                window.location.reload();
-            }
+            // Reload to apply changes
+            window.location.reload();
         }
     }
 
