@@ -208,52 +208,6 @@ export const DCircles: React.FC = () => {
             </section>
 
             <section className="analysis-section">
-                <h2>Digit Comparison</h2>
-                <div className="digit-selector">
-                    <div className="selector-label-small">SELECT A DIGIT TO ANALYZE:</div>
-                    <div className="digit-buttons">
-                        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(d => (
-                            <button
-                                key={d}
-                                className={`digit-btn ${selectedDigit === d ? 'selected' : ''}`}
-                                onClick={() => setSelectedDigit(d)}
-                            >
-                                {d}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-                {selectedDigit !== null && (() => {
-                    let over = 0, under = 0, equal = 0;
-                    ticks.forEach(tick => {
-                        const digit = getLastDigit(tick.quote);
-                        if (digit > selectedDigit) over++;
-                        else if (digit < selectedDigit) under++;
-                        else equal++;
-                    });
-                    const total = ticks.length;
-                    return (
-                        <div className="comparison-results">
-                            <div className="comparison-grid">
-                                <div className="stat-card over">
-                                    <div className="stat-value">{((over / total) * 100).toFixed(1)}%</div>
-                                    <div className="stat-label">Over {selectedDigit}</div>
-                                </div>
-                                <div className="stat-card under">
-                                    <div className="stat-value">{((under / total) * 100).toFixed(1)}%</div>
-                                    <div className="stat-label">Under {selectedDigit}</div>
-                                </div>
-                                <div className="stat-card equal">
-                                    <div className="stat-value">{((equal / total) * 100).toFixed(1)}%</div>
-                                    <div className="stat-label">Equal {selectedDigit}</div>
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })()}
-            </section>
-
-            <section className="analysis-section">
                 <div className="section-header-with-toggle">
                     <h2>Pattern Analysis</h2>
                     <div className="toggle-buttons">
@@ -289,7 +243,7 @@ export const DCircles: React.FC = () => {
                             <div className="digits-stream-mini">
                                 {last50Digits.map((digit, idx) => (
                                     <span key={idx} className={`digit-badge ${digit % 2 === 0 ? 'even' : 'odd'}`}>
-                                        {digit}
+                                        {digit % 2 === 0 ? 'E' : 'O'}
                                     </span>
                                 ))}
                             </div>
@@ -297,6 +251,20 @@ export const DCircles: React.FC = () => {
                     </>
                 ) : (
                     <>
+                        <div className="digit-selector">
+                            <div className="selector-label-small">SELECT A DIGIT TO ANALYZE:</div>
+                            <div className="digit-buttons">
+                                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(d => (
+                                    <button
+                                        key={d}
+                                        className={`digit-btn ${selectedDigit === d ? 'selected' : ''}`}
+                                        onClick={() => setSelectedDigit(d)}
+                                    >
+                                        {d}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                         <div className="overunder-grid">
                             <div className="stat-card over">
                                 <div className="stat-value">
