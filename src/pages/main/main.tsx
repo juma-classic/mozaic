@@ -238,6 +238,30 @@ const TrackCalculatorIcon = () => (
     </svg>
 );
 
+const HacksAnalysisIcon = () => (
+    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        {/* Terminal/Code background */}
+        <rect x='2' y='3' width='20' height='18' rx='2' stroke='currentColor' strokeWidth='1.5' fill='none' opacity='0.3' />
+        
+        {/* Terminal prompt lines */}
+        <path d='M5 7L8 10L5 13' stroke='#10b981' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
+        <path d='M10 13H15' stroke='#10b981' strokeWidth='2' strokeLinecap='round' />
+        
+        {/* Binary code */}
+        <text x='6' y='18' fontSize='3' fill='#3b82f6' fontFamily='monospace'>101</text>
+        <text x='14' y='18' fontSize='3' fill='#3b82f6' fontFamily='monospace'>010</text>
+        
+        {/* Hacker symbol */}
+        <circle cx='19' cy='6' r='2.5' fill='#ef4444' opacity='0.9' />
+        <text x='19' y='7.5' fontSize='2.5' fill='#fff' textAnchor='middle' fontWeight='bold'>H</text>
+        
+        {/* Analysis dots */}
+        <circle cx='5' cy='7' r='0.8' fill='#ffd700' />
+        <circle cx='8' cy='10' r='0.8' fill='#ffd700' />
+        <circle cx='5' cy='13' r='0.8' fill='#ffd700' />
+    </svg>
+);
+
 const AppWrapper = observer(() => {
     const { connectionStatus } = useApiBase();
     const { dashboard, load_modal, run_panel, summary_card } = useStore();
@@ -273,44 +297,24 @@ const AppWrapper = observer(() => {
     useEffect(() => {
         const fetchBots = async () => {
             const botFiles = [
-                '_Over 1 under 8 Recovery Even & Odd 2026 💵💯 (5).xml', // Over 1 bot - First priority
-                'MOZAIC AI PRO v1.xml', // MOZAIC AI - Second priority
-                'Speed Auto Bot🦷.xml', // Speed Auto - Third priority
-                '$Dollar printer .xml', // Dollar Printer - Fourth priority
-                'AUTO C4 VOLT 🇬🇧 2 🇬🇧 AI PREMIUM ROBOT  (2) (1).xml', // Auto C4 - Fifth priority
-                'States Digit Switcher.xml',
-                'PATEL (with Entry).xml',
+                '_Over 1 under 8 Recovery Even & Odd 2026 💵💯 (5).xml',
+                '$Dollar printer .xml',
+                'AUTO C4 VOLT 🇬🇧 2 🇬🇧 AI PREMIUM ROBOT  (2) (1).xml',
+                'Auto Mozaic Bot.xml',
                 'Flipping-Tool-2026 - Elvis Trades (1).xml',
+                'MOZAIC AI PRO v1.xml',
+                'Mozaic Digit Switcher.xml',
+                'Mozaic Over.xml',
                 'Over 3 Delirium by Elvis Trades.xml',
+                'Over-Killer by Mozaic.xml',
+                'Over-Pro by Mozaic.xml',
+                'PATEL (with Entry).xml',
                 'Random LDP Differ - Elvis Trades.xml',
                 'Raziel Over Under.xml',
-                'Game Changer AI (1).xml',
-                'Game Changer AI - etrades.xml',
-                'CFX-025-Base.xml',
-                'CFX-025-Step1.xml',
-                'CFX-025-Step2.xml',
-                'CFX-025-Step3.xml',
-                'CFX-025-Step4.xml',
-                'CFX-025-Enhanced.xml',
-                'Digit-Hunter-Pro.xml',
-                'MatchesMaster.xml',
-                'MarketMakerPro-Enhanced.xml',
-                'MarketMakerPro.xml',
-                'CFX-EvenOdd.xml',
-                'CFX-RiseFall.xml',
-                'Deriv Killer - Elvis Trades.xml',
-                'Odins_ghost.xml',
-                'M27 Auto Switch bot 2024 (1).xml',
-                'Even Odd Ghost V1 by Dexter.xml',
-                'GreenLight Pro - 2026 Over .xml',
-                'EVENODD Double loss Bot .xml',
-                'Over2 Master.xml',
-                'CFX - 025.xml',
-                'Raziel Over Under Entry Point.xml',
-                'noloss bot.xml',
-                'Elvis SpeedBot(With Entry).xml',
-                'Over_Under Ghost - by ElvisTrades.xml',
-                'Over_Under Ghost v2 - by Elvis Trades.xml',
+                'Speed Auto Bot🦷.xml',
+                'States Digit Switcher.xml',
+                'Under 8 promax by Mozaic.xml',
+                'Under Killer 2026.xml',
             ];
             const botPromises = botFiles.map(async file => {
                 try {
@@ -1882,7 +1886,39 @@ const AppWrapper = observer(() => {
                         >
                             <DCircles />
                         </div>
-                        {/* DIGIT ANALYSIS TAB */}
+                        {/* HACKS ANALYSIS TAB */}
+                        <div
+                            label={
+                                <>
+                                    <HacksAnalysisIcon />
+                                    <Localize i18n_default_text='HacksAnalysis' />
+                                </>
+                            }
+                            id='id-hacks-analysis'
+                        >
+                            <div
+                                style={{
+                                    width: '100%',
+                                    height: 'calc(100vh - 120px)',
+                                    minHeight: 'calc(100vh - 120px)',
+                                    overflow: 'hidden',
+                                    background: '#fff',
+                                }}
+                            >
+                                <iframe
+                                    src='/www.osamtradinghub.com/alltools-ten.vercel.app/index.html'
+                                    title='HacksAnalysis - Advanced Trading Tools'
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        border: 'none',
+                                        display: 'block',
+                                    }}
+                                    allow='clipboard-write'
+                                    sandbox='allow-same-origin allow-scripts allow-forms allow-popups allow-modals'
+                                />
+                            </div>
+                        </div>
                         {/* CHARTS TAB */}
                         <div
                             label={

@@ -35,6 +35,7 @@ export const DBOT_TABS: TDashboardTabIndex = Object.freeze({
     TRACK_ANALYZER: 20,
     TRACK_CALCULATOR: 21,
     DIGIT_ANALYSIS: 22,
+    HACKS_ANALYSIS: 23,
 });
 
 export const MAX_STRATEGIES = 10;
@@ -62,6 +63,7 @@ export const TAB_IDS = [
     'id-track-analyzer',
     'id-track-calculator',
     'id-digit-analysis',
+    'id-hacks-analysis',
 ];
 
 export const DEBOUNCE_INTERVAL_TIME = 500;
