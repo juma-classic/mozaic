@@ -172,16 +172,16 @@ export const DCircles: React.FC = () => {
                                                 cy="32"
                                                 r="28"
                                                 fill="none"
-                                                stroke="rgba(255,255,255,0.1)"
-                                                strokeWidth="3"
+                                                stroke="rgba(200,200,200,0.3)"
+                                                strokeWidth="4"
                                             />
                                             <circle
                                                 cx="32"
                                                 cy="32"
                                                 r="28"
                                                 fill="none"
-                                                stroke={isLowest ? '#ef4444' : isHighest ? '#10b981' : '#6b7280'}
-                                                strokeWidth="3"
+                                                stroke={isLowest ? '#ef4444' : isHighest ? '#10b981' : '#4b5563'}
+                                                strokeWidth="4"
                                                 strokeDasharray={`${(progress / 100) * 175.9} 175.9`}
                                                 strokeLinecap="round"
                                                 transform="rotate(-90 32 32)"
